@@ -1,1 +1,1 @@
-docker build -t train-map -f Dockerfile.map .
+docker build -t ptv-front -f Dockerfile.front .

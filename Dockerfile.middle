@@ -2,7 +2,7 @@ FROM node:latest
 MAINTAINER Ian Peake <ian.peake@rmit.edu.au>
 
 RUN useradd -ms /bin/bash user
-RUN setcap 'cap_net_bind_service=+ep' `which node`
+#RUN setcap 'cap_net_bind_service=+ep' `which node`
 RUN chown -R user /home/user
 
 USER user
@@ -12,13 +12,11 @@ WORKDIR /home/user
 
 EXPOSE 80
 
-RUN git clone https://github.com/JX-Siaw/real-time-transportation-api.git
+RUN git clone https://github.com/martin-sean/real-time-transportation-api
 RUN cd real-time-transportation-api && npm install
-COPY guest-runner-middle.sh guest-runner-middle.sh
 
 USER root
-RUN chown user /home/user/guest-runner-middle.sh
-RUN chmod +x /home/user/guest-runner-middle.sh
+RUN chown -R user /home/user
 
 USER user
 WORKDIR /home/user/real-time-transportation-api

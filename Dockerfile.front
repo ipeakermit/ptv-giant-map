@@ -8,15 +8,11 @@ RUN chown -R user /home/user
 USER user
 WORKDIR /home/user
 
-RUN git clone https://github.com/JX-Siaw/real-time-transportation-map.git
+RUN git clone https://github.com/martin-sean/real-time-transportation-map
+RUN echo force rebuild
 RUN cd real-time-transportation-map && npm install
-COPY guest-runner-front.sh guest-runner-front.sh
 
-RUN cd real-time-transportation-map && sed -i '2i  "proxy": "http://localhost:5000",' package.json
-
-USER root
-RUN chown user /home/user/guest-runner-front.sh
-RUN chmod +x /home/user/guest-runner-front.sh
+RUN cd real-time-transportation-map && sed -i 's%"proxy": "http://localhost:5000"%"proxy": "http://ptv-middle:5000"%' package.json
 
 USER user
-WORKDIR /home/user/
+WORKDIR /home/user/real-time-transportation-map

@@ -1,1 +1,1 @@
-docker build -t train-api -f Dockerfile.middle .
+docker build -t ptv-middle -f Dockerfile.middle .

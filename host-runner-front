@@ -11,12 +11,16 @@ get_script_dir () {
      echo "script directory is $SCRIPTDIR"
 }
 
+docker network create ptvmap
+
+./build-front
 
 # SCRIPTDIR=...
 get_script_dir
 
-INAME=train-map
-CNAME=train-map
+INAME=ptv-front
+CNAME=ptv-front
 docker rm -f $CNAME
 
-docker run -d -v $SCRIPTDIR/dot-env:/home/user/real-time-transportation-api/.env -p:3500:3000 --name $CNAME $INAME npm start
+docker run --network ptvmap -d -v $SCRIPTDIR/dot-env:/home/user/real-time-transportation-api/.env -p:8080:3000 --name $CNAME $INAME npm start
+docker logs -f ptv-front
