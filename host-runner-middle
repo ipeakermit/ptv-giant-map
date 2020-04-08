@@ -1,0 +1,22 @@
+get_script_dir () {
+     SOURCE="${BASH_SOURCE[0]}"
+     # While $SOURCE is a symlink, resolve it
+     while [ -h "$SOURCE" ]; do
+          DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+          SOURCE="$( readlink "$SOURCE" )"
+          # If $SOURCE was a relative symlink (so no "/" as prefix, need to resolve it relative to the symlink base directory
+          [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+     done
+     SCRIPTDIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+     echo "script directory is $SCRIPTDIR"
+}
+
+
+# SCRIPTDIR=...
+get_script_dir
+
+INAME=train-api
+CNAME=train-api
+docker rm -f $CNAME
+
+docker run -d -v $SCRIPTDIR/dot-env:/home/user/real-time-transportation-api/.env -p:5000:5000 --name $CNAME $INAME npm start
