@@ -10,17 +10,13 @@ WORKDIR /home/user
 
 RUN git clone https://github.com/JX-Siaw/real-time-transportation-map.git
 RUN cd real-time-transportation-map && npm install
-COPY guest-runner-map.sh guest-runner-map.sh
+COPY guest-runner-front.sh guest-runner-front.sh
 
-RUN git clone https://github.com/JX-Siaw/real-time-transportation-api.git
-RUN cd real-time-transportation-api && npm install
-COPY guest-runner-api.sh guest-runner-api.sh
-
-#RUN cd real-time-transportation-map && sed -i '2i  "proxy": "http://localhost:5000",' package.json
+RUN cd real-time-transportation-map && sed -i '2i  "proxy": "http://localhost:5000",' package.json
 
 USER root
-RUN chown user /home/user/guest-runner-map.sh
-RUN chmod +x /home/user/guest-runner-map.sh
+RUN chown user /home/user/guest-runner-front.sh
+RUN chmod +x /home/user/guest-runner-front.sh
 
 USER user
 WORKDIR /home/user/

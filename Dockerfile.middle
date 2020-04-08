@@ -14,11 +14,11 @@ EXPOSE 80
 
 RUN git clone https://github.com/JX-Siaw/real-time-transportation-api.git
 RUN cd real-time-transportation-api && npm install
-COPY guest-runner-api.sh guest-runner-api.sh
+COPY guest-runner-middle.sh guest-runner-middle.sh
 
 USER root
-RUN chown user /home/user/guest-runner-api.sh
-RUN chmod +x /home/user/guest-runner-api.sh
+RUN chown user /home/user/guest-runner-middle.sh
+RUN chmod +x /home/user/guest-runner-middle.sh
 
 USER user
 WORKDIR /home/user/real-time-transportation-api
