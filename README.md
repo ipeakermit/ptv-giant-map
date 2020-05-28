@@ -8,7 +8,7 @@ Config: copy dot-env-middle-template to dot-env-middle, update with your API key
 
 NOTE: DO NOT MODIFY dot-env-middle-template, or you may share your API when you commit/push
 
-NOTE: ports should be modified in host-runner scripts, not in dot-env
+Ports settings should be modified in host-runner scripts / Dockerfile, not in dot-env
 
 Build:
 
