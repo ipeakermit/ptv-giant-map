@@ -1,6 +1,6 @@
 # ptv-giant-map
 
-This project deploys a giant PTV map service as two Docker containers.
+This project deploys a giant PTV map service as two Docker containers. Based on: https://github.com/martin-sean/real-time-transportation-map (originally Jeremy Siaw)
 
 Prequisites: docker-ce, bash, PTV API Key
 
